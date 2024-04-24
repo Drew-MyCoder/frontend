@@ -1,32 +1,32 @@
 import React from 'react'
 import { useParams } from 'react-router-dom/cjs/react-router-dom.min'
-// import useFetch from '../hooks/useFetch'
+import useFetch from '../hooks/useFetch'
 import { useQuery, gql } from '@apollo/client'
 
-const REVIEW = gql`
-  query GetReview($id: ID!) {
-    api {
-      review (id: $id) {
-        title,
-        body,
-        rating,
-        id,
-      }
-    }
-  }
-`
+// const REVIEW = gql`
+//   query GetReview($id: ID!) {
+//     api {
+//       review (id: $id) {
+//         title,
+//         body,
+//         rating,
+//         id,
+//       }
+//     }
+//   }
+// `
 
 export const Reviewdetails = () => {
   const { id } = useParams()
-  // const { loading, error, data } = useFetch(
-  //   'http://localhost:1337/api/reviews/' + id
-  // )
+  const { loading, error, data } = useFetch(
+    'http://localhost:1337/api/reviews/' + id
+  )
 
-  const { loading, error, data } = useQuery(REVIEW, {
-    variables: { id: id }
-  })
+  // const { loading, error, data } = useQuery(REVIEW, {
+  //   variables: { id: id }
+  // })
   if (loading) return <p>Loading...</p>
-  console.log(data, 'this is loaded the data')
+  console.log(data, 'this is the loaded reviewdata')
   if (error) return <p>Error :(</p>
 
   return (
@@ -41,7 +41,7 @@ export const Reviewdetails = () => {
           {/* <p>{review.attributes.body}</p> */}
           <p>
               {data.data.attributes.body.map((paragraph) => (
-                <span key={paragraph.type}>{
+                <span key={paragraph.id}>{
                   paragraph.children[0].text}</span>
               ))}
             </p>
