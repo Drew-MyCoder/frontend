@@ -5,16 +5,16 @@ import { Reviewdetails } from "./pages/Reviewdetails"
 import { Category } from "./pages/Category"
 import  { ApolloClient, InMemoryCache, ApolloProvider } from '@apollo/client'
 
-const client = new ApolloClient({
-  uri: 'http://localhost:1337/graphql',
-  cache: new InMemoryCache()
-})
+// const client = new ApolloClient({
+//   uri: 'http://localhost:1337/graphql',
+//   cache: new InMemoryCache()
+// })
 
 function App() {
 
   return (
   <Router>
-    <ApolloProvider client={client}>
+    {/* <ApolloProvider client={client}> */}
       <div className="App">
         <SiteHeader />
         <Switch>
@@ -29,7 +29,7 @@ function App() {
           </Route>
         </Switch>
       </div>
-    </ApolloProvider>
+    {/* </ApolloProvider> */}
    </Router>
   )
 }
